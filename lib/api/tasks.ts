@@ -1,13 +1,13 @@
 import { Task, CreateTask } from "@/types/task";
 import {TaskStatus} from "@/types/status"
 
-const BASE_URL = 'http://localhost:5000/api/tasks';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * Fetch all tasks
  */
 export const getTasks = async (): Promise<Task[]> => {
-  const response = await fetch(BASE_URL);
+  const response = await fetch(`${BASE_URL}/tasks`);
   if (!response.ok) {
     throw new Error('Failed to fetch tasks');
   }
@@ -17,11 +17,9 @@ export const getTasks = async (): Promise<Task[]> => {
 /**
  * Fetch tasks for specific project
  */
-// lib/api/tasks.ts
-
 export const getTasksByProject = async (projectId: string): Promise<Task[]> => {
   try {
-    const response = await fetch(`${BASE_URL}/project/${projectId}`);
+    const response = await fetch(`${BASE_URL}/tasks/project/${projectId}`);
     
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
@@ -34,11 +32,12 @@ export const getTasksByProject = async (projectId: string): Promise<Task[]> => {
     return []; // Graceful fallback
   }
 };
+
 /**
  * Fetch single task by ID
  */
 export const getTask = async (id: string): Promise<Task> => {
-  const response = await fetch(`${BASE_URL}/${id}`);
+  const response = await fetch(`${BASE_URL}/tasks/${id}`);
   if (!response.ok) {
     throw new Error('Failed to fetch task');
   }
@@ -49,7 +48,7 @@ export const getTask = async (id: string): Promise<Task> => {
  * Create new task
  */
 export const createTask = async (taskData: CreateTask): Promise<Task> => {
-  const response = await fetch(BASE_URL, {
+  const response = await fetch(`${BASE_URL}/tasks`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -67,7 +66,7 @@ export const createTask = async (taskData: CreateTask): Promise<Task> => {
  * Update existing task
  */
 export const updateTask = async (id: string, taskData: Partial<Task>): Promise<Task> => {
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${BASE_URL}/tasks/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -84,7 +83,7 @@ export const updateTask = async (id: string, taskData: Partial<Task>): Promise<T
  * Update task status
  */
 export const updateTaskStatus = async (taskId: string, status: TaskStatus): Promise<Task> => {
-  const response = await fetch(`${BASE_URL}/${taskId}`, {
+  const response = await fetch(`${BASE_URL}/tasks/${taskId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -104,7 +103,7 @@ export const updateTaskStatus = async (taskId: string, status: TaskStatus): Prom
  * Delete task
  */
 export const deleteTask = async (id: string): Promise<void> => {
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${BASE_URL}/tasks/${id}`, {
     method: 'DELETE',
   });
   if (!response.ok) {
