@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Tracker Frontend
 
-## Getting Started
+A modern project and task management application built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Project Management**
+  - Create, update, and delete projects
+  - Project status tracking (Open, Completed, Archived)
+  - Project description and details
+  - Task count per project
+
+- **Task Management**
+  - Create, update, and delete tasks within projects
+  - Task status tracking (Todo, In Progress, Done)
+  - Task description and details
+  - Quick status updates with visual indicators
+
+- **User Interface**
+  - Modern and minimal design
+  - Responsive layout
+  - Real-time updates
+  - Loading states and skeletons
+  - Search functionality for projects
+  - Status badges with color coding
+
+## Tech Stack
+
+- **Framework**: Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **State Management**: React Hooks
+- **API Integration**: Fetch API
+- **Icons**: Lucide Icons
+
+## Setup Steps
+
+1. **Prerequisites**
+   - Node.js (v18 or later)
+   - npm or yarn
+
+2. **Installation**
+   ```bash
+   # Clone the repository
+   git clone <repository-url>
+   cd frontend
+
+   # Install dependencies
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Environment Setup**
+   Create a `.env.local` file in the root directory:
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   ```
+
+4. **Development**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Build**
+   ```bash
+   npm run build
+   # or
+   yarn build
+   ```
+
+## Project Structure
+
+```
+frontend/
+├── app/                    # Next.js app directory
+│   ├── projects/          # Project-related pages
+│   └── page.tsx           # Home page
+├── components/            # Reusable components
+│   ├── projects/         # Project-related components
+│   ├── tasks/           # Task-related components
+│   └── ui/              # UI components
+├── lib/                  # Utility functions
+├── types/               # TypeScript type definitions
+└── public/              # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Integration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The frontend communicates with the backend API for:
+- Project CRUD operations
+- Task CRUD operations
+- Status updates
+- Data fetching
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contributing
 
-## Learn More
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT 
